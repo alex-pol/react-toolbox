@@ -72,6 +72,7 @@ interface AutocompleteProps extends ReactToolbox.Props {
    * @default auto
    */
   onChange?: Function;
+  onQueryChange?: Function
   /**
    * Determines if the selected list is shown above or below input. It can be above or below.
    * @default above
