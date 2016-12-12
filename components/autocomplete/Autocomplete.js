@@ -67,7 +67,7 @@ const factory = (Chip, Input) => {
    };
 
    componentWillReceiveProps (nextProps) {
-     if (!this.props.multiple) {
+     if (!this.props.multiple && nextProps.value !== this.props.value) {
        this.setState({
          query: this.query(nextProps.value)
        });
