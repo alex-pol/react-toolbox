@@ -27,6 +27,7 @@ const factory = (Chip, Input) => {
      onBlur: PropTypes.func,
      onChange: PropTypes.func,
      onFocus: PropTypes.func,
+     onQueryChange: PropTypes.func,
      selectedPosition: PropTypes.oneOf(['above', 'below']),
      showSuggestionsWhenValueIsSet: PropTypes.bool,
      source: PropTypes.any,
@@ -54,7 +55,8 @@ const factory = (Chip, Input) => {
      selectedPosition: 'above',
      showSuggestionsWhenValueIsSet: false,
      source: {},
-     suggestionMatch: 'start'
+     suggestionMatch: 'start',
+     onQueryChange() {}
    };
 
    state = {
@@ -106,6 +108,7 @@ const factory = (Chip, Input) => {
    };
 
    handleQueryChange = (value) => {
+     this.props.onQueryChange(value);
      this.setState({query: value, showAllSuggestions: false, active: null});
    };
 
@@ -308,7 +311,7 @@ const factory = (Chip, Input) => {
      const {
       allowCreate, error, label, source, suggestionMatch, //eslint-disable-line no-unused-vars
       selectedPosition, keepFocusOnChange, showSuggestionsWhenValueIsSet,    //eslint-disable-line no-unused-vars
-      theme, ...other
+      theme, onQueryChange, ...other
     } = this.props;
      const className = classnames(theme.autocomplete, {
        [theme.focus]: this.state.focus
